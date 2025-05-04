@@ -6,6 +6,9 @@
 >
 > <sup>Colon, 2022</sup>
 
+> hey so it's me just to tell u gh pages is broken for this so pls run this on your own machine, thx <3
+>
+> <sup>Rindo, 2025</sup>
 # GDBrowser
 
   
