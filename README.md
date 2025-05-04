@@ -1,20 +1,22 @@
-hi, this is colon from the future.
-
-what the FUCK was wrong with me back then???? seriously this is some of the worst code i've ever seen
-
-welp, here's the readme. but you've been warned,,,
-
+> hi, this is colon from the future.
+> 
+> what the FUCK was wrong with me back then???? seriously this is some of  the worst code i've ever seen
+> 
+> welp, here's the readme. but you've been warned,,,
+>
+> <sup>Colon, 2022</sup>
 
 # GDBrowser
 
   
 
-Uh... so I've never actually used GitHub before this. But I'll try to explain everything going on here.
+Uh... so I've ~~never~~ actually used GitHub before this. (colon didn't) But I'll try to explain everything going on here. <sup>and me for my modifications</sup>
 
   
 
-Sorry for my messy code. It's why I was skeptical about making this open source, but you know what, the code runs fine in the end.
+Sorry for ~~my~~ **colon's** messy code. <sup>i code better than that furry guy</sup> It's why ~~I~~ colon was skeptical about making this open source, but you know what, the code runs fine in the end.
 
+**Note: i'm too lazy to edit this readme further, i'll edit it only if i add a new feature or smth like that**
   
   ## How do I run this?
 If you're just here to use GDBrowser locally because the site is down or blocked or restricted or god knows what, this is the only part you really need to read
