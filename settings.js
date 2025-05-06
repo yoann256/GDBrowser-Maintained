@@ -7,8 +7,8 @@ module.exports = {
 
     params: {   // Always send this stuff to the servers
         secret: 'Wmfd2893gb7',
-        gameVersion: '21',
-        binaryVersion: '35',
+        gameVersion: '22', // Basically emulates 2.2
+        binaryVersion: '44', // This says it's 2.207 instead of just 2.2.
         gdbrowser: '1'
     },
 

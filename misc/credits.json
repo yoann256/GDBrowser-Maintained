@@ -9,6 +9,14 @@
         },
 
         {
+            "header": "Maintaining GDBrowser",
+            "name": "Rindollo74",
+            "youtube": ["", "youtube"],
+            "twitter": ["", ""],
+            "github": ["https://github.com/yoann256", "github"]
+        },
+
+        {
             "header": "Reverse Engineering",
             "name": "Wylie",
             "ign": "TheWylieMaster",
