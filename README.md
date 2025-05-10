@@ -13,7 +13,11 @@
 
 > [!NOTE]
 > this repo is updated for 2.2
-  
+
+## Todo:
+- [ ] Add support for events and *lists* *(in the work)*
+- [ ] Add new 2.2 icons
+- [X] Suffer from emotional damage beacause this code is so hard to read and you know therhkkhglfkgl.. (i slept on my keyborad while writing this, sorry)
 
 Uh... so I've ~~never~~ actually used GitHub before this. (colon didn't) But I'll try to explain everything going on here. <sup>and me for my modifications</sup>
 

@@ -270,6 +270,7 @@ app.get("/mappacks", function(req, res) { res.status(200).sendFile(__dirname + "
 app.get("/messages", function(req, res) { res.status(200).sendFile(__dirname + "/html/messages.html") })
 app.get("/search", function(req, res) { res.status(200).sendFile(__dirname + "/html/filters.html") })
 app.get("/search/:text", function(req, res) { res.status(200).sendFile(__dirname + "/html/search.html") })
+app.get("/lists/:text", function(req, res) { res.status(200).sendFile(__dirname + "/html/lists.html") }) // why does this still redirect to search/lists :(((
 
 // API
 
@@ -281,6 +282,7 @@ app.get("/api/gauntlets", function(req, res) { app.run.gauntlets(app, req, res) 
 app.get("/api/leaderboard", function(req, res) { app.run[req.query.hasOwnProperty("accurate") ? "accurate" : "scores"](app, req, res) })
 app.get("/api/leaderboardLevel/:id", RL2, function(req, res) { app.run.leaderboardLevel(app, req, res) })
 app.get("/api/level/:id", RL, function(req, res) { app.run.level(app, req, res, true) })
+app.get("/api/lists/:text", RL2, function(req, res) { app.run.search(app, req, res) })
 app.get("/api/mappacks", function(req, res) { app.run.mappacks(app, req, res) })
 app.get("/api/profile/:id", RL2, function(req, res) { app.run.profile(app, req, res, true) })
 app.get("/api/search/:text", RL2, function(req, res) { app.run.search(app, req, res) })
