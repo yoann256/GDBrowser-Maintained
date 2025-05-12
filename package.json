@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "express-rate-limit": "^7.5.0",
     "google-spreadsheet": "^3.0.11",
-    "jimp": "^0.8.5",
+    "jimp": "^1.6.0",
     "plist": "^3.0.1",
     "request": "^2.88.2",
     "sharp": "^0.34.1"
