@@ -1,6 +1,6 @@
 const request = require('request')
 const music = require('../misc/music.json')
-const Level = require('../classes/Level.js')
+const List = require('../classes/List.js')
 let demonList = {}
 
 module.exports = async (app, req, res) => {
