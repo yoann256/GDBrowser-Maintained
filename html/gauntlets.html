@@ -36,15 +36,32 @@
 <script type="text/javascript" src="../global.js?v=1"></script>
 <script>
 
-fetch('../api/gauntlets').then(res => res.json()).then(gauntlets => {
-	$('#loading').hide()
-	gauntlets.forEach((x, y) => {
-		$('#gauntletList').append(`
-			<div class="gauntlet">
-			<a href="../search/*?gauntlet=${x.id}">
-			<img src="../assets/gauntlets/${x.name.toLowerCase()}.png" height="300%"><br>
-			<h3 class="gauntletText"">${x.name}<br>Gauntlet</h3></div></a>`)
-		})
-});
+// Had to hardcode the gauntlet number but else it give random "Unknown" gauntles
+fetch('../api/gauntlets')
+    .then(res => res.json())
+    .then(gauntlets => {
+        $('#loading').hide();
+
+        let gauntletCounter = 0;
+
+        gauntlets.forEach((x, y) => {
+            gauntletCounter++;
+
+            if (gauntletCounter <= 26) {
+				// let imageName = x.name.toLowerCase();
+				// FCK VARIABLES
+				console.log("Current Gauntlet Object:", x); // ADD THIS LINE
+        		console.log("Gauntlet Name:", x.name); 
+				// console.log("Image Name:", imageName)
+                $('#gauntletList').append(`
+                    <div class="gauntlet">
+                        <a href="../search/*?gauntlet=${x.id}">
+                            <img src="../assets/gauntlets/${x.name.toLowerCase().replace(/ /g, '_')}.png" height="300%"><br>
+                            <h3 class="gauntletText">${x.name}<br>Gauntlet</h3>
+                        </a>
+                    </div>`);
+            }
+        });
+    });
 
 </script>

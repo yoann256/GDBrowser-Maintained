@@ -1,3 +1,4 @@
+
 let difficulties = ["auto", "easy", "normal", "hard", "harder", "insane", "demon", "demon-easy", "demon-medium", "demon-insane", "demon-extreme"]
 let cache = {}
 

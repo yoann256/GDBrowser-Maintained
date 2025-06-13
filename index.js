@@ -223,7 +223,7 @@ app.post("/analyzeLevel", function(req, res) { app.run.analyze(app, req, res) })
 // HTML
 
 let onePointNineDisabled = ['daily', 'weekly', 'gauntlets', 'messages']
-let downloadDisabled = ['daily', 'weekly']
+let downloadDisabled = ['', '']
 let gdpsHide = ['achievements', 'messages']
 
 app.get("/", function(req, res) { 

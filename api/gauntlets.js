@@ -8,7 +8,7 @@ module.exports = async (app, req, res) => {
   let cached = cache[req.id]
   if (app.config.cacheGauntlets && cached && cached.data && cached.indexed + 2000000 > Date.now()) return res.send(cached.data)   // half hour cache
 
-  req.gdRequest('getGJGauntlets21', {}, function (err, resp, body) {
+  req.gdRequest('getGJGauntlets21', { special: 1}, function (err, resp, body) {
 
     if (err) return res.sendError()
     let gauntlets = body.split('#')[0].split('|').map(x => app.parseResponse(x)).filter(x => x[3])
