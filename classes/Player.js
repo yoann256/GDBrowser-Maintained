@@ -16,7 +16,7 @@ class Player {
 
         if (!+account[22]) { // partial profile, used for leaderboards and stuff
             this.icon = {
-                form: ['icon', 'ship', 'ball', 'ufo', 'wave', 'robot', 'spider'][+account[14]],
+                form: ['icon', 'ship', 'ball', 'ufo', 'wave', 'robot', 'spider', 'swing', 'jetpack'][+account[14]],
                 icon: +account[9] || 1,
                 col1: +account[10],
                 col2: +account[11],
@@ -39,6 +39,8 @@ class Player {
             this.wave = +account[25],
             this.robot = +account[26],
             this.spider = +account[43],
+            this.swing = +account[53],
+            this.jetpack = +account[54],
             this.col1 = +account[10],
             this.col2 = +account[11],
             this.deathEffect = +account[48] || 1,
