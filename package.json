@@ -12,7 +12,7 @@
     "canvas": "3.1.0",
     "compression": "^1.7.4",
     "connect-timeout": "^1.9.0",
-    "express": "^4.21.2",
+    "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
     "google-spreadsheet": "^4.1.4",
     "jimp": "^1.6.0",
