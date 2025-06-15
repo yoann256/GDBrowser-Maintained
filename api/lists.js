@@ -7,22 +7,6 @@ module.exports = async (app, req, res) => {
 
     if (req.offline) return res.status(500).send(req.query.hasOwnProperty("err") ? "err" : "-1")
 
-    let demonMode = req.query.hasOwnProperty("demonlist") || req.query.hasOwnProperty("demonList") || req.query.type == "demonlist" || req.query.type == "demonList"
-    if (demonMode) {
-        if (!req.server.demonList) return res.sendError(400)
-        let dList = demonList[req.id]
-        if (!dList || !dList.list.length || dList.lastUpdated + 600000 < Date.now()) {  // 10 minute cache
-            return request.get(req.server.demonList + 'api/v2/demons/listed/?limit=100', function (err1, resp1, list1) {
-                if (err1) return res.sendError()
-                else return request.get(req.server.demonList + 'api/v2/demons/listed/?limit=100&after=100', function (err2, resp2, list2) {
-                    if (err2) return res.sendError()
-                    demonList[req.id] = {list: JSON.parse(list1).concat(JSON.parse(list2)).map(x => String(x.level_id)), lastUpdated: Date.now()}
-                    return app.run.search(app, req, res)
-                })
-            })
-        }
-    }
-
     let amount = 10;
     let count = req.isGDPS ? 10 : +req.query.count
     if (count && count > 0) {
@@ -98,65 +82,56 @@ module.exports = async (app, req, res) => {
     req.gdRequest('getGJLevelsLists', req.gdParams(filters), function(err, resp, body) {
 
         if (err) return res.sendError()
+
+        console.log(body);
+
         let splitBody = body.split('#')
         let preRes = splitBody[0].split('|')
-        let authorList = {}
-        let songList = {}
-        let authors = splitBody[1].split('|')
-        let songs = splitBody[2]; songs = songs.split('~:~').map(x => app.parseResponse(`~${x}~`, '~|~'))
-        songs.forEach(x => {songList[x['~1']] = x['2']})
+        let parsedlists = []
 
-        authors.forEach(x => {
-        if (x.startsWith('~')) return
-        let arr = x.split(':')
-        authorList[arr[0]] = [arr[1], arr[2]]})
+        listArray.forEach((x, y) => {
 
-        let levelArray = preRes.map(x => app.parseResponse(x)).filter(x => x[1])
-        let parsedLevels = []
-
-        levelArray.forEach((x, y) => {
-
-            let songSearch = songs.find(y => y['~1'] == x[35]) || []
-
-            let level = new Level(x, req.server).getSongInfo(songSearch)
-            if (!level.id) return
-            level.author = authorList[x[6]] ? authorList[x[6]][0] : "-";
-            level.accountID = authorList[x[6]] ? authorList[x[6]][1] : "0";
+            
+            let list = new List(x, req.server).getlists()
+            if (!list.id) return
+            list.author = authorList[x[6]] ? authorList[x[6]][0] : "-";
+            list.accountID = authorList[x[6]] ? authorList[x[6]][1] : "0";
 
             if (demonMode) {
-                if (!y) level.demonList = req.server.demonList
-                level.demonPosition = demonList[req.id].list.indexOf(level.id) + 1
+                if (!y) list.demonList = req.server.demonList
+                list.demonPosition = demonList[req.id].list.indexOf(list.id) + 1
             }
 
-            if (req.isGDPS) level.gdps = (req.onePointNine ? "1.9/" : "") + req.server.id
-            if (level.author != "-" && app.config.cacheAccountIDs) app.userCache(req.id, level.accountID, level.playerID, level.author)
+            if (req.isGDPS) list.gdps = (req.onePointNine ? "1.9/" : "") + req.server.id
+            if (list.author != "-" && app.config.cacheAccountIDs) app.userCache(req.id, list.accountID, list.playerID, list.author)
 
             //this is broken if you're not on page 0, blame robtop
             if (filters.page == 0 && y == 0 && splitBody[3]) {
                 let pages = splitBody[3].split(":");
 
                 if (filters.gauntlet) {  // gauntlet page stuff
-                    level.results = levelArray.length 
-                    level.pages = 1
+                    list.results = listArray.length 
+                    list.pages = 1
                 }
 
                 else if (filters.type == 10) {  //  custom page stuff
-                    level.results = listSize
-                    level.pages = +Math.ceil(listSize / (amount || 10))
+                    list.results = listSize
+                    list.pages = +Math.ceil(listSize / (amount || 10))
                 }
 
                 else {  // normal page stuff
-                    level.results = +pages[0];
-                    level.pages = +pages[0] == 9999 ? 1000 : +Math.ceil(pages[0] / amount);
+                    list.results = +pages[0];
+                    list.pages = +pages[0] == 9999 ? 1000 : +Math.ceil(pages[0] / amount);
                 }
 
             }
 
-            parsedLevels[y] = level
+            parsedlists[y] = list
+            console.log(list)
         })
 
-        if (filters.type == 10) parsedLevels = parsedLevels.slice((+filters.page) * amount, (+filters.page + 1) * amount)
-        return res.send(parsedLevels)
+        if (filters.type == 10) parsedlists = parsedlists.slice((+filters.page) * amount, (+filters.page + 1) * amount)
+        return res.send(parsedlists)
 
     })
 }
