@@ -14,6 +14,7 @@ app.servers = pinnedServers.concat(notPinnedServers)
 app.safeServers = JSON.parse(JSON.stringify(app.servers)) // clone
 app.safeServers.forEach(x => { delete x.endpoint; delete x.substitutions; delete x.overrides; delete x.disabled })
 app.config = require('./settings.js')
+app.controllerDetetcted = false
 
 let rlMessage = "Rate limited ¯\\_(ツ)_/¯<br><br>Please do not spam my servers with a crazy amount of requests. It slows things down on my end and stresses RobTop's servers just as much." +
 " If you really want to send a zillion requests for whatever reason, please download the GDBrowser repository locally - or even just send the request directly to the GD servers.<br><br>" +
@@ -374,6 +375,19 @@ app.get('/icon/:text', function(req, res) {
   let fileExists = iconKitFiles.previewIcons.includes(iconPath)
   if (fileExists) return res.status(200).sendFile(`./iconkit/premade/${iconPath}`, {root: __dirname })
   else return res.status(200).sendFile(`./iconkit/premade/${iconForm}_01.png`, {root: __dirname})
+})
+
+// sorry
+app.post('/miscapi/controllerPost', function(req, res) {
+  if (req.query) {
+    app.controllerDetetcted = true
+  } else {
+    app.controllerDetetcted = false
+  }
+})
+
+app.get('/miscapi/controllerGet', function(req, res) {
+  res.status(200).send(app.controllerDetetcted)
 })
 
 app.get('*', function(req, res) {

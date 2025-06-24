@@ -155,3 +155,50 @@ $.fn.isInViewport = function () {
     let viewportBottom = viewportTop + $(window).height();
     return elementBottom > viewportTop && elementTop < viewportBottom;
 };
+
+// var gamepadconnected = false
+// $(document).ready(() => {
+//   window.addEventListener("gamepadconnected", e => {
+//     console.log("connected gamepad");
+// 	var gamepadconnected = true
+//   });
+
+//   window.addEventListener("gamepaddisconnected", e => {
+//     console.log("disconnected gamepad");
+// 	var gamepadconnected = false
+//   });
+// });
+
+// sorry
+var controllerDetetcted = false
+
+fetch("/miscapi/controllerGet").then(function(response) {
+  return response.json();
+}).then(function(data) {
+  console.log(data);
+  controllerDetetcted = data
+}).catch(function(err) {
+  console.log('Fetch Error :-S', err);
+});
+
+if (!controllerDetetcted) {
+	$(document).ready(() => {
+	  window.addEventListener("gamepadconnected", e => {
+	    console.log("connected gamepad");
+		gamepadconnected = true
+	  });
+
+	  window.addEventListener("gamepaddisconnected", e => {
+	    console.log("disconnected gamepad");
+		gamepadconnected = false
+	  });
+	});
+}
+
+fetch("/miscapi/controllerPost", {
+  method: "POST",
+  body: gamepadconnected,
+  headers: {
+    "Content-type": "text/plain; charset=UTF-8"
+  }
+});

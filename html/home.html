@@ -17,6 +17,21 @@
 	<div class="popup" id="credits">
 	</div>
 
+	<div id="gamepadInfo" class="popup">
+			<div class="brownBox center supercenter bounce" style="width: 101vh; height: 50%; padding-top: 0.3%; padding-bottom: 3.5%; padding-left: 1%; display: block">
+				<img class="gdButton" src="../assets/close.png" width="9%" style="position: absolute; top: -8.5%; left: -5.5vh" onclick="$('#gamepadInfo').hide()" tabindex="0">
+				<h1 class="smaller center" style="font-size: 5.5vh; margin-top: 1.5%">Gamepad Support</h1>
+				<p class="center">This version has <cr>experimental</cr> support for controllers. Do you want to enable this feature?</p>
+				<div style="margin-bottom: 3%">
+					<p id="message" style="padding: 0% 10%; margin-top: 1.5%"></p>
+				</div>
+				<img src="../assets/btn-no.png" height=11%; class="gdButton postbutton center"
+					style="margin-right: 1%" onclick="$('#gamepadInfo').hide()">
+				<img src="../assets/btn-yes.png" type="submit" height=11%; class="gdButton postbutton center"
+					style="margin-left: 1%" onclick="$('#gamepadInfo').hide()">
+			</div>
+		</div>
+
 	<div style="position:absolute; bottom: 0%; left: 0%; width: 100%; pointer-events: none">
 		<img class="cornerPiece" src="../assets/corner.png" width=7%;>
 	</div>
@@ -195,5 +210,20 @@ Fetch(`./api/credits`).then(async res => {
 	
 });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+	window.addEventListener("gamepadconnected", e => {
+		console.log("connected gamepad");
+		var gamepadconnected = true
+		$('#gamepadInfo').show()
+	});
+	
+	if (gamepadconnected) {
+		$('#gamepadInfo').show()
+	}
+})
+
+
+
 
 </script>
