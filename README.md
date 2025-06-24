@@ -11,6 +11,10 @@
 > <sup>Rindo, 2025</sup>
 # GDBrowser
 
+![GitHub License](https://img.shields.io/github/license/yoann256/GDBrowser-Maintained)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/yoann256/GDBrowser-Maintained)
+
+
 > [!NOTE]
 > this repo is updated for 2.2
 
