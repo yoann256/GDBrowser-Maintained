@@ -9,6 +9,9 @@
 > hey so it's me just to tell u gh pages is broken for this so pls run this on your own machine, thx <3
 >
 > <sup>Rindo, 2025</sup>
+
+> [!WARNING]
+> This version is deprecated in favor of a new React/Next.js version, if yu have any questions, feel free to open an issue.
 # GDBrowser
 
 ![GitHub License](https://img.shields.io/github/license/yoann256/GDBrowser-Maintained)
