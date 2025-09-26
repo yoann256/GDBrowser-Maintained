@@ -11,7 +11,6 @@
     "downloadsDisabled": true,
     "pinned": true
   },
-  
   {
     "name": "2.2 Unlocked",
     "link": "https://smjs.eu/gd/unlock/database/dashboard/",
@@ -41,5 +40,40 @@
       "getGJScores20": "getGJScores",
       "getGJComments21": "getGJComments"
     }
+  },
+  {
+    "name": "Platinum GDPS",
+    "link": "https://platinum.141412.xyz/",
+    "author": "zudd",
+    "authorLink": "https://www.youtube.com/@PlatinumGDPS/",
+    "id": "platinum",
+    "endpoint": "http://platinum.141412.xyz/database",
+    "onePointNine": true,
+    "weeklyLeaderboard": true,
+    "overrides": {
+      "getGJMapPacks21": "getGJMapPacks",
+      "getGJScores20": "getGJScores",
+      "getGJComments21": "getGJComments"
+    }
+  },
+  {
+    "name": "SilvrPS",
+    "link": "https://silverragdps.mathieuar.fr/",
+    "author": "silverra",
+    "authorLink": "https://youtube.com/@silverra",
+    "id": "silvrps",
+    "endpoint": "https://silverragdps.mathieuar.fr/database",
+    "onePointNine": false,
+    "weeklyLeaderboard": false
+  },
+  {
+    "name": "DindeGDPS",
+    "link": "https://dl.dindegmdps.us.to/",
+    "author": "DimisAIO",
+    "authorLink": "https://dimisaio.be/",
+    "id": "dinde",
+    "endpoint": "https://gdps.dimisaio.be/database/",
+    "onePointNine": false,
+    "weeklyLeaderboard": false
   }
 ]
