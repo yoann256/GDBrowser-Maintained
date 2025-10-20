@@ -10,10 +10,6 @@
 >
 > <sup>Rindo, 2025</sup>
 
-> [!WARNING]
-> This version is deprecated in favor of a new React/Next.js version, if yu have any questions, feel free to open an issue.
-# GDBrowser
-
 ![GitHub License](https://img.shields.io/github/license/yoann256/GDBrowser-Maintained)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/yoann256/GDBrowser-Maintained)
 
