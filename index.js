@@ -56,13 +56,15 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(timeout('20s'));
+app.enable('trust proxy');
+
 
 app.use(async function(req, res, next) {
 
   let subdomains = req.subdomains.map(x => x.toLowerCase())
   if (!subdomains.length) subdomains = [""]
   req.server = app.servers.find(x => subdomains.includes(x.id.toLowerCase()))
-  if (subdomains.length > 1 || !req.server) return res.redirect("http://" + req.get('host').split(".").slice(subdomains.length).join(".") + req.originalUrl)
+  if (subdomains.length > 1 || !req.server) return res.redirect("https://" + req.get('host').split(".").slice(subdomains.length).join(".") + req.originalUrl)
 
   // will expand this in the future :wink:
   res.sendError = function(errorCode=500) {
